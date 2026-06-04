@@ -1,0 +1,52 @@
+@if (pokemon) {
+<div class="row">
+  <div class="col s12 m8 offset-m2">
+    <h2 class="header center"> {{ pokemon.name }} </h2>  
+    <div class="card horizontal hoverable">
+      <div class="card-image">
+        <img [src]="pokemon.picture">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <table class="bordered striped">
+            <tbody>
+              <tr>
+                <td>Nom</td>
+                <td><strong>{{ pokemon.name}}</strong></td>
+              </tr>
+              <tr>
+                <td>Point de vie</td>
+                <td><strong>{{ pokemon.hp}}</strong></td>
+              </tr>
+              <tr>
+                <td>Dégâts</td>
+                <td><strong>{{ pokemon.cp}}</strong></td>
+              </tr>
+              <tr>
+                <td>Type</td>
+                <td>
+                  @for (type of pokemon.types; track $index) {
+                    <span class="{{ type | pokemonTypeColor }}" >{{type}}</span>
+                  }
+                </td> 
+              </tr>
+              <tr>
+                <td>Date de création</td>
+                <td><strong>{{ pokemon.created | date: 'dd/MM/yy'}}</strong></td>
+              </tr>
+              <tr>
+                <div class="card-action">
+                  <a (click)="goBack()" class="waves-effect btn waves-light">Retour</a>
+                  <a (click)="goEdit(pokemon)" class="waves-effect btn waves-light">Editer</a>
+                </div>
+              </tr> 
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}@else{
+  <p class="center">Pokemon non trouvé</p>
+}
