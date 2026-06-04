@@ -7,8 +7,9 @@ export const POKEMONS: Pokemon[] = [
         hp: 25,
         cp: 5,
         picture: "https://qvexmeaxafazljnlsjbi.supabase.co/storage/v1/object/public/pokedex/small/1.webp",
-        types: ["Plante", "Poison"],
-        created: new Date()
+            types: ["Plante", "Poison"],
+            rarity: '⭐',
+            created: new Date()
     },
     {
         id: 2,
@@ -16,8 +17,9 @@ export const POKEMONS: Pokemon[] = [
         hp: 28,
         cp: 6,
         picture: "https://qvexmeaxafazljnlsjbi.supabase.co/storage/v1/object/public/pokedex/small/4.webp",
-        types: ["Feu"],
-        created: new Date()
+            types: ["Feu"],
+            rarity: '⭐⭐',
+            created: new Date()
     },
     {
         id: 3,
@@ -25,8 +27,9 @@ export const POKEMONS: Pokemon[] = [
         hp: 21,
         cp: 4,
         picture: "https://qvexmeaxafazljnlsjbi.supabase.co/storage/v1/object/public/pokedex/small/7.webp",
-        types: ["Eau"],
-        created: new Date()
+            types: ["Eau"],
+            rarity: '⭐',
+            created: new Date()
     },
     {
         id: 4,
@@ -34,8 +37,9 @@ export const POKEMONS: Pokemon[] = [
         hp: 16,
         cp: 2,
         picture: "https://qvexmeaxafazljnlsjbi.supabase.co/storage/v1/object/public/pokedex/small/13.webp",
-        types: ["Insecte", "Poison"],
-        created: new Date()
+            types: ["Insecte", "Poison"],
+            rarity: '⭐',
+            created: new Date()
     },
     {
         id: 5,
@@ -43,8 +47,9 @@ export const POKEMONS: Pokemon[] = [
         hp: 30,
         cp: 7,
         picture: "https://qvexmeaxafazljnlsjbi.supabase.co/storage/v1/object/public/pokedex/small/16.webp",
-        types: ["Normal", "Vol"],
-        created: new Date()
+            types: ["Normal", "Vol"],
+            rarity: '⭐',
+            created: new Date()
     },
     {
         id: 6,
@@ -52,8 +57,9 @@ export const POKEMONS: Pokemon[] = [
         hp: 18,
         cp: 6,
         picture: "https://qvexmeaxafazljnlsjbi.supabase.co/storage/v1/object/public/pokedex/small/19.webp",
-        types: ["Normal"],
-        created: new Date()
+            types: ["Normal"],
+            rarity: '⭐',
+            created: new Date()
     },
     {
         id: 7,
@@ -61,8 +67,9 @@ export const POKEMONS: Pokemon[] = [
         hp: 14,
         cp: 5,
         picture: "https://qvexmeaxafazljnlsjbi.supabase.co/storage/v1/object/public/pokedex/small/21.webp",
-        types: ["Normal", "Vol"],
-        created: new Date()
+            types: ["Normal", "Vol"],
+            rarity: '⭐',
+            created: new Date()
     },
     {
         id: 8,
@@ -70,8 +77,9 @@ export const POKEMONS: Pokemon[] = [
         hp: 16,
         cp: 4,
         picture: "https://qvexmeaxafazljnlsjbi.supabase.co/storage/v1/object/public/pokedex/small/23.webp",
-        types: ["Poison"],
-        created: new Date()
+            types: ["Poison"],
+            rarity: '⭐',
+            created: new Date()
     },
     {
         id: 9,
@@ -79,8 +87,9 @@ export const POKEMONS: Pokemon[] = [
         hp: 21,
         cp: 7,
         picture: "https://qvexmeaxafazljnlsjbi.supabase.co/storage/v1/object/public/pokedex/small/25.webp",
-        types: ["Electrik"],
-        created: new Date()
+            types: ["Electrik"],
+            rarity: '⭐⭐⭐',
+            created: new Date()
     },
     {
         id: 10,
@@ -88,8 +97,9 @@ export const POKEMONS: Pokemon[] = [
         hp: 19,
         cp: 3,
         picture: "https://qvexmeaxafazljnlsjbi.supabase.co/storage/v1/object/public/pokedex/small/27.webp",
-        types: ["Normal"],
-        created: new Date()
+            types: ["Normal"],
+            rarity: '⭐',
+            created: new Date()
     },
     {
         id: 11,
@@ -97,8 +107,9 @@ export const POKEMONS: Pokemon[] = [
         hp: 25,
         cp: 5,
         picture: "https://qvexmeaxafazljnlsjbi.supabase.co/storage/v1/object/public/pokedex/small/35.webp",
-        types: ["Fée"],
-        created: new Date()
+            types: ["Fée"],
+            rarity: '⭐⭐',
+            created: new Date()
     },
     {
         id: 12,
@@ -106,7 +117,8 @@ export const POKEMONS: Pokemon[] = [
         hp: 17,
         cp: 8,
         picture: "https://qvexmeaxafazljnlsjbi.supabase.co/storage/v1/object/public/pokedex/small/37.webp",
-        types: ["Feu"],
-        created: new Date()
+            types: ["Feu"],
+            rarity: '⭐⭐',
+            created: new Date()
     }
 ];
