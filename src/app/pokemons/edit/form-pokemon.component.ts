@@ -8,6 +8,7 @@ import { PokemonsService } from "../pokemons.service";
   standalone: true,
   selector: 'form-pokemon',
   templateUrl: './form-pokemon.component.html',
+  styleUrls: ['./form-pokemon.component.css'],
   imports: [PokemonTypeColor, FormsModule]
 })
 export class FormPokemonComponent implements OnInit{

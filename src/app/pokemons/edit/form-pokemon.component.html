@@ -77,12 +77,23 @@
               L’URL de l’image est obligatoire.
             </div>
           </div>          
+          <div class="form-group">
+            <label for="rarity">Rareté</label>
+            <select id="rarity" name="rarity" class="form-control" [(ngModel)]="pokemon.rarity" #rarity="ngModel">
+              <option value="1">★☆☆☆☆</option>
+              <option value="2">★★☆☆☆</option>
+              <option value="3">★★★☆☆</option>
+              <option value="4">★★★★☆</option>
+              <option value="5">★★★★★</option>
+            </select>
+          </div>
+
           @if (pokemon.picture) {
             <div class="center section">
               <img [src]="pokemon.picture" alt="Aperçu du pokémon" style="max-width: 200px; max-height: 200px;" />
             </div>
           }
-          <form class="form-group">
+          <div class="form-group">
             <label>Types</label>
             @for (type of types; track type) {
               <p>
@@ -101,7 +112,7 @@
               </label>
               </p>
             }
-          </form>
+          </div>
         </div>  
       </div>  
     </div>
