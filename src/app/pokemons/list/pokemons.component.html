@@ -16,7 +16,7 @@
           <div class="card-stacked">
             <div class="card-content">
               <p>{{ pokemon.name }}</p>
-              <p>Rareté: <strong>{{ pokemon.rarity }}</strong></p>
+              <p>Rareté: <span [innerHTML]="pokemon.rarity | pokemonRarity"></span></p>
               <p><small>{{ pokemon.created | date: "dd/MM/yy"}}</small></p>
               @for (type of pokemon.types; track $index) {
                 <span class="{{ type | pokemonTypeColor }}" >{{type}}</span>

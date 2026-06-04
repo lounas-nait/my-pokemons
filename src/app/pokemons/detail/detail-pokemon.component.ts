@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Pokemon } from "../donnees/pokemon";
 import { PokemonTypeColor } from "../pipes/pokemon-type-color.pipe";
+import { PokemonRarityPipe } from "../pipes/pokemon-rarity.pipe";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DatePipe } from "@angular/common";
 import { PokemonsService } from "../pokemons.service";
@@ -9,7 +10,7 @@ import { PokemonsService } from "../pokemons.service";
   standalone: true,
   selector: 'detail-Pokemon',
   templateUrl: 'detail-pokemon.component.html',
-  imports: [PokemonTypeColor, DatePipe]
+  imports: [PokemonTypeColor, PokemonRarityPipe, DatePipe]
 })
 export class DetailPokemonComponent implements OnInit{
 

@@ -14,9 +14,9 @@
                 <td>Nom</td>
                 <td><strong>{{ pokemon.name}}</strong></td>
               </tr>
-               <tr>
+              <tr>
                 <td>Rareté</td>
-                <td><strong>{{ pokemon.rarity }}</strong></td>
+                <td><span [innerHTML]="pokemon.rarity | pokemonRarity"></span></td>
               </tr>
               <tr>
                 <td>Point de vie</td>
