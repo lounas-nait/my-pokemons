@@ -3,8 +3,9 @@ import { Pokemon } from '../donnees/pokemon';
 import { PokemonTypeColor } from '../pipes/pokemon-type-color.pipe';
 import { PokemonRarityPipe } from '../pipes/pokemon-rarity.pipe';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgIf } from '@angular/common';
 import { PokemonsService } from '../pokemons.service';
+import { forkJoin, switchMap } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -14,7 +15,8 @@ import { PokemonsService } from '../pokemons.service';
 })
 export class DetailPokemonComponent implements OnInit {
   //variable qui va récupérer le pokemon sélectionné
-  pokemon: any = null;
+  pokemon: Pokemon | null = null;
+  pokemons: Pokemon[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -23,8 +25,20 @@ export class DetailPokemonComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    let id = this.route.snapshot.params['id'];
-    this.pokemonsService.getPokemon(id).subscribe((pokemon) => (this.pokemon = pokemon));
+    this.route.params
+      .pipe(
+        switchMap((params) => {
+          const id = +params['id'];
+          return forkJoin({
+            pokemon: this.pokemonsService.getPokemon(id),
+            pokemons: this.pokemonsService.getPokemons(),
+          });
+        }),
+      )
+      .subscribe(({ pokemon, pokemons }) => {
+        this.pokemon = pokemon;
+        this.pokemons = pokemons;
+      });
   }
 
   goBack() {
@@ -41,5 +55,36 @@ export class DetailPokemonComponent implements OnInit {
     this.pokemonsService.deletePokemon(pokemon.id).subscribe(() => {
       this.router.navigate(['pokemon', 'all']);
     });
+  }
+
+  private currentIndex(): number {
+    if (!this.pokemon) return -1;
+    return this.pokemons.findIndex((p) => p.id === this.pokemon?.id);
+  }
+
+  hasPrevious(): boolean {
+    const index = this.currentIndex();
+    return index > 0;
+  }
+
+  hasNext(): boolean {
+    const index = this.currentIndex();
+    return index >= 0 && index < this.pokemons.length - 1;
+  }
+
+  goPrevious(): void {
+    const index = this.currentIndex();
+    if (index > 0) {
+      const previous = this.pokemons[index - 1];
+      this.router.navigate(['pokemon', previous.id]);
+    }
+  }
+
+  goNext(): void {
+    const index = this.currentIndex();
+    if (index >= 0 && index < this.pokemons.length - 1) {
+      const next = this.pokemons[index + 1];
+      this.router.navigate(['pokemon', next.id]);
+    }
   }
 }

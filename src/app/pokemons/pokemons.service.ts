@@ -3,7 +3,7 @@ import { Pokemon } from './donnees/pokemon';
 import { POKEMONS } from './donnees/mock-pokemons';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, tap, Observable, of } from 'rxjs';
+import { catchError, tap, Observable, of, map } from 'rxjs';
 
 //Observable = flux de donnée
 // of() = fabriquer un flux
@@ -87,13 +87,21 @@ export class PokemonsService {
     );
   }
 
-  searchPokemons(term: string): Observable<Pokemon[]> {
-    if (!term.trim()) {
-      return of([]);
-    }
+  searchPokemons(term: string, type?: string, rarity?: number): Observable<Pokemon[]> {
+    const query = term.trim().toLowerCase();
 
-    return this.http.get<Pokemon[]>(`${this.pokemonUrl}/?name=${term}`).pipe(
-      tap((_) => this.log(`fetched pokemons term=${term}`)),
+    return this.http.get<Pokemon[]>(this.pokemonUrl).pipe(
+      map((pokemons) =>
+        pokemons.filter((pokemon) => {
+          const matchesName = !query || pokemon.name.toLowerCase().includes(query);
+          const matchesType = !type || pokemon.types.includes(type);
+          const matchesRarity = rarity == null || pokemon.rarity === rarity;
+          return matchesName && matchesType && matchesRarity;
+        }),
+      ),
+      tap(() =>
+        this.log(`fetched pokemons search=${term} type=${type || 'any'} rarity=${rarity ?? 'any'}`),
+      ),
       catchError(this.handleError<Pokemon[]>(`searchPokemons term=${term}`)),
     );
   }

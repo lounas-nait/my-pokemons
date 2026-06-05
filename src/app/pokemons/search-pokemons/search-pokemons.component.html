@@ -2,16 +2,60 @@
   <div class="col s8 offset-s2">
     <div class="row">
       <div class="input-field col s12">
-        <input type="text" 
-               id="autocomplete-input" 
-               class="autocomplete" 
-               placeholder="Chercher un pokemon" (keyup)="search(searchbox.value)" #searchbox>
+        <input
+          type="text"
+          id="autocomplete-input"
+          class="autocomplete"
+          placeholder="Chercher un pokemon"
+          (keyup)="search(searchbox.value)"
+          #searchbox
+        />
+      </div>
+
+      <div class="col s6" style="margin-top: 1rem">
+        <label>Type</label>
+        <select
+          (change)="selectType(typeSelect.value)"
+          #typeSelect
+          style="
+            display: block;
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+          "
+        >
+          <option value="">Tous les types</option>
+          @for (type of types; track type) {
+            <option [value]="type">{{ type }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="col s6" style="margin-top: 1rem">
+        <label>Rareté</label>
+        <select
+          (change)="selectRarity(raritySelect.value)"
+          #raritySelect
+          style="
+            display: block;
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+          "
+        >
+          <option value="">Toutes raretés</option>
+          @for (rarity of rarities; track rarity) {
+            <option [value]="rarity">{{ rarity }} ★</option>
+          }
+        </select>
       </div>
 
       <div class="collection">
-        @for (pokemon of pokemons | async ; track $index) {
+        @for (pokemon of pokemons | async; track $index) {
           <a (click)="goToDetail(pokemon)" class="collection-item">
-            <img [src]="pokemon.picture" style="width: 30px;"> {{ pokemon.name }}
+            <img [src]="pokemon.picture" style="width: 30px" /> {{ pokemon.name }}
           </a>
         }
       </div>
