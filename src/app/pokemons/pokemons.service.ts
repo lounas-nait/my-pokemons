@@ -105,4 +105,19 @@ export class PokemonsService {
       catchError(this.handleError<Pokemon[]>(`searchPokemons term=${term}`)),
     );
   }
+
+  toggleFavorite(pokemon: Pokemon): Observable<Pokemon> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'content-type': 'application/json' }),
+    };
+    const updated = { ...pokemon, isFavorite: !pokemon.isFavorite };
+    return this.http.put<Pokemon>(`${this.pokemonUrl}/${pokemon.id}`, updated, httpOptions).pipe(
+      tap((_) => this.log(`toggled favorite id=${pokemon.id}`)),
+      catchError(this.handleError<Pokemon>('toggleFavorite')),
+    );
+  }
+
+  getFavoritePokemons(): Observable<Pokemon[]> {
+    return this.getPokemons().pipe(map((pokemons) => pokemons.filter((p) => p.isFavorite)));
+  }
 }
