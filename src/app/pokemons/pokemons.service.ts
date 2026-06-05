@@ -68,6 +68,17 @@ export class PokemonsService {
 
   }
 
+  addPokemon(pokemon: Pokemon): Observable<Pokemon> {
+    const httpOptions = {
+      headers: new HttpHeaders({'content-type': 'application/json'})
+    }
+
+    return this.http.post<Pokemon>(this.pokemonUrl, pokemon, httpOptions).pipe(
+      tap((newPokemon: Pokemon) => this.log(`added pokemon w/ id=${newPokemon.id}`)),
+      catchError(this.handleError<Pokemon>('addPokemon'))
+    );
+  }
+
   searchPokemons(term: string): Observable<Pokemon[]>{
     if(!term.trim()){
       return of([]);

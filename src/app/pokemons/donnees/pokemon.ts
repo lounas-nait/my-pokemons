@@ -1,5 +1,4 @@
-export class Pokemon{
-
+export class Pokemon {
   id: number;
   hp: number;
   cp: number;
@@ -9,17 +8,15 @@ export class Pokemon{
   rarity: number;
   created: Date;
 
-  constructor(){
+  constructor() {
     this.id = 0;
     this.hp = 0;
     this.cp = 0;
-    this.name = "NoName";
-    this.picture = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png";
-    this.types = ['plante'];
+    this.name = 'nom';
+    this.picture = 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png';
+    this.types = [];
     this.rarity = 1;
     this.created = new Date();
-
   }
-// https://codeshare.io/5gyRyB
-
+  // https://codeshare.io/5gyRyB
 }

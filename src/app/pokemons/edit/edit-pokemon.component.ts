@@ -1,8 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Pokemon } from "../donnees/pokemon";
-import { PokemonTypeColor } from "../pipes/pokemon-type-color.pipe";
 import { ActivatedRoute, Router } from "@angular/router";
-import { DatePipe } from "@angular/common";
 import { FormPokemonComponent } from "./form-pokemon.component";
 import { PokemonsService } from "../pokemons.service";
 
@@ -10,7 +8,7 @@ import { PokemonsService } from "../pokemons.service";
   standalone: true,
   selector: 'edit-Pokemon',
   templateUrl: 'edit-pokemon.component.html',
-  imports: [PokemonTypeColor, DatePipe, FormPokemonComponent]
+  imports: [FormPokemonComponent]
 })
 export class EditPokemonComponent implements OnInit{
 

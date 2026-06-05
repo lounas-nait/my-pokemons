@@ -36,4 +36,8 @@ export class PokemonsComponent implements OnInit{
     this.router.navigate(link);
   }
 
+  addPokemon(){
+    this.router.navigate(['/pokemon', 'add']);
+  }
+
 }
