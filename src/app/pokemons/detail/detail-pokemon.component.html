@@ -55,9 +55,9 @@
                       <a
                         (click)="toggleFavorite(pokemon)"
                         class="waves-effect btn waves-light"
-                        [style.color]="pokemon.isFavorite ? '#ffd700' : '#555'"
+                        [style.color]="pokemon.is_favorite ? '#ffd700' : '#555'"
                       >
-                        {{ pokemon.isFavorite ? '★' : '☆' }} Favoris
+                        {{ pokemon.is_favorite ? '★' : '☆' }} Favoris
                       </a>
                       <a (click)="deletePokemon(pokemon)" class="waves-effect btn red">Supprimer</a>
                     </div>
