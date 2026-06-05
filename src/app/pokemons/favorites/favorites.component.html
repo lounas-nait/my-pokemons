@@ -1,23 +1,21 @@
-<h1 class="center">Liste de pokémons</h1>
-
-<div class="center section">
-  <a class="btn waves-effect waves-light" (click)="addPokemon()">Ajouter un pokémon</a>
-</div>
-
-<search-pokemon></search-pokemon>
+<h1 class="center">⭐ Pokémons favoris</h1>
 
 <div class="container">
   <div class="row">
+    @if (pokemons.length === 0) {
+      <p class="center" style="color: var(--color-text-secondary); margin-top: 2rem">
+        Aucun pokémon en favori pour l'instant.
+      </p>
+    }
     @for (pokemon of pokemons; track pokemon.id) {
       <div class="col s6 m4">
         <pkmnBorderCard class="card horizontal" (click)="selectPokemon(pokemon)">
           <div class="card-image">
-            <!-- <img src="{{ pokemon.picture }}" alt="img"> -->
             <img [src]="pokemon.picture" alt="img" />
           </div>
           <div class="card-stacked">
             <div class="card-content">
-              <p>{{ pokemon.name }}</p>
+              <p>{{ pokemon.name }} ★</p>
               <p>Rareté: <span [innerHTML]="pokemon.rarity | pokemonRarity"></span></p>
               <p>
                 <small>{{ pokemon.created | date: 'dd/MM/yy' }}</small>

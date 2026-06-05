@@ -112,6 +112,7 @@ export class PokemonsService {
     };
     const updated = { ...pokemon, isFavorite: !pokemon.isFavorite };
     return this.http.put<Pokemon>(`${this.pokemonUrl}/${pokemon.id}`, updated, httpOptions).pipe(
+      map(() => updated),
       tap((_) => this.log(`toggled favorite id=${pokemon.id}`)),
       catchError(this.handleError<Pokemon>('toggleFavorite')),
     );

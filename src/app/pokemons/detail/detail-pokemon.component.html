@@ -48,48 +48,57 @@
                   </td>
                 </tr>
                 <tr>
-                  <div class="card-action">
-                    <a (click)="goBack()" class="waves-effect btn waves-light">Retour</a>
-                    <a (click)="goEdit(pokemon)" class="waves-effect btn waves-light">Editer</a>
-                    <a (click)="deletePokemon(pokemon)" class="waves-effect btn red">Supprimer</a>
-                  </div>
+                  <td colspan="2" style="padding: 12px 0">
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px">
+                      <a (click)="goBack()" class="waves-effect btn waves-light">Retour</a>
+                      <a (click)="goEdit(pokemon)" class="waves-effect btn waves-light">Editer</a>
+                      <a
+                        (click)="toggleFavorite(pokemon)"
+                        class="waves-effect btn waves-light"
+                        [style.color]="pokemon.isFavorite ? '#ffd700' : '#555'"
+                      >
+                        {{ pokemon.isFavorite ? '★' : '☆' }} Favoris
+                      </a>
+                      <a (click)="deletePokemon(pokemon)" class="waves-effect btn red">Supprimer</a>
+                    </div>
 
-                  <div
-                    style="
-                      display: flex;
-                      justify-content: center;
-                      gap: 16px;
-                      padding: 8px 16px;
-                      border-top: 0.5px solid var(--color-border-tertiary);
-                    "
-                  >
-                    @if (hasPrevious()) {
-                      <a
-                        (click)="goPrevious()"
-                        style="
-                          cursor: pointer;
-                          text-decoration: underline;
-                          color: var(--color-text-secondary);
-                          font-size: 14px;
-                        "
-                      >
-                        ← Précédent
-                      </a>
-                    }
-                    @if (hasNext()) {
-                      <a
-                        (click)="goNext()"
-                        style="
-                          cursor: pointer;
-                          text-decoration: underline;
-                          color: var(--color-text-secondary);
-                          font-size: 14px;
-                        "
-                      >
-                        Suivant →
-                      </a>
-                    }
-                  </div>
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: center;
+                        gap: 24px;
+                        padding-top: 8px;
+                        border-top: 0.5px solid #e0e0e0;
+                      "
+                    >
+                      @if (hasPrevious()) {
+                        <a
+                          (click)="goPrevious()"
+                          style="
+                            cursor: pointer;
+                            text-decoration: underline;
+                            color: #888;
+                            font-size: 14px;
+                          "
+                        >
+                          ← Précédent
+                        </a>
+                      }
+                      @if (hasNext()) {
+                        <a
+                          (click)="goNext()"
+                          style="
+                            cursor: pointer;
+                            text-decoration: underline;
+                            color: #888;
+                            font-size: 14px;
+                          "
+                        >
+                          Suivant →
+                        </a>
+                      }
+                    </div>
+                  </td>
                 </tr>
               </tbody>
             </table>

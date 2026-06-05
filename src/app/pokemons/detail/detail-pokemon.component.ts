@@ -87,4 +87,12 @@ export class DetailPokemonComponent implements OnInit {
       this.router.navigate(['pokemon', next.id]);
     }
   }
+
+  toggleFavorite(pokemon: Pokemon): void {
+    this.pokemonsService.toggleFavorite(pokemon).subscribe((updated) => {
+      if (updated) {
+        this.pokemon = { ...updated };
+      }
+    });
+  }
 }
