@@ -1,0 +1,132 @@
+<h1 class="center">Comparateur de Pokémons</h1>
+
+<div class="container">
+  <div
+    class="row"
+    style="
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      align-items: flex-end;
+      margin-bottom: 2rem;
+    "
+  >
+    <div>
+      <label style="display: block; margin-bottom: 4px; color: #888; font-size: 13px"
+        >Pokémon 1</label
+      >
+      <select
+        [(ngModel)]="selectedId1"
+        style="
+          display: block;
+          padding: 8px 12px;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          min-width: 180px;
+          height: 38px;
+          background: white;
+        "
+      >
+        <option [ngValue]="0" disabled>Choisir...</option>
+        @for (p of pokemons; track p.id) {
+          <option [ngValue]="p.id">{{ p.name }}</option>
+        }
+      </select>
+    </div>
+
+    <div>
+      <label style="display: block; margin-bottom: 4px; color: #888; font-size: 13px"
+        >Pokémon 2</label
+      >
+      <select
+        [(ngModel)]="selectedId2"
+        style="
+          display: block;
+          padding: 8px 12px;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          min-width: 180px;
+          height: 38px;
+          background: white;
+        "
+      >
+        <option [ngValue]="0" disabled>Choisir...</option>
+        @for (p of pokemons; track p.id) {
+          <option [ngValue]="p.id">{{ p.name }}</option>
+        }
+      </select>
+    </div>
+
+    <div>
+      <button
+        (click)="compare()"
+        [disabled]="!selectedId1 || !selectedId2 || selectedId1 === selectedId2"
+        class="waves-effect btn waves-light"
+      >
+        Comparer
+      </button>
+    </div>
+  </div>
+
+  @if (pokemon1 && pokemon2) {
+    <div class="row" style="display: flex; gap: 24px; justify-content: center">
+      @for (pokemon of [pokemon1, pokemon2]; track pokemon.id) {
+        <div
+          style="
+            flex: 1;
+            max-width: 340px;
+            background: white;
+            border: 0.5px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+          "
+        >
+          <div style="text-align: center; padding: 1rem; background: #f5f5f5">
+            <img [src]="pokemon.picture" style="width: 100px; height: 100px; object-fit: contain" />
+            <h4 style="margin: 8px 0 0">{{ pokemon.name }}</h4>
+          </div>
+          <table class="bordered striped" style="width: 100%; margin: 0">
+            <tbody>
+              <tr>
+                <td>HP</td>
+                <td>
+                  <strong>{{ pokemon.hp }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Dégâts</td>
+                <td>
+                  <strong>{{ pokemon.cp }}</strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Rareté</td>
+                <td><span [innerHTML]="pokemon.rarity | pokemonRarity"></span></td>
+              </tr>
+              <tr>
+                <td>Types</td>
+                <td>
+                  @for (type of pokemon.types; track $index) {
+                    <span class="{{ type | pokemonTypeColor }}">{{ type }}</span>
+                  }
+                </td>
+              </tr>
+              <tr>
+                <td>Favori</td>
+                <td>{{ pokemon.isFavorite ? '★ Oui' : 'Non' }}</td>
+              </tr>
+              <tr>
+                <td>Créé le</td>
+                <td>{{ pokemon.created | date: 'dd/MM/yy' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      }
+    </div>
+  }
+
+  <div class="center" style="margin-top: 2rem">
+    <a (click)="goBack()" class="waves-effect btn waves-light">Retour</a>
+  </div>
+</div>

@@ -54,4 +54,7 @@ export class PokemonsComponent implements OnInit {
       this.pokemons = this.pokemons.filter((p) => p.id !== pokemon.id);
     });
   }
+  comparePokemons(): void {
+    this.router.navigate(['/pokemon/compare']);
+  }
 }
