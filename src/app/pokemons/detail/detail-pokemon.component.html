@@ -51,15 +51,19 @@
                   <td colspan="2" style="padding: 12px 0">
                     <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px">
                       <a (click)="goBack()" class="waves-effect btn waves-light">Retour</a>
-                      <a (click)="goEdit(pokemon)" class="waves-effect btn waves-light">Editer</a>
-                      <a
-                        (click)="toggleFavorite(pokemon)"
-                        class="waves-effect btn waves-light"
-                        [style.color]="pokemon.is_favorite ? '#ffd700' : '#555'"
-                      >
-                        {{ pokemon.is_favorite ? '★' : '☆' }} Favoris
-                      </a>
-                      <a (click)="deletePokemon(pokemon)" class="waves-effect btn red">Supprimer</a>
+                      @if (isLoggedIn) {
+                        <a (click)="goEdit(pokemon)" class="waves-effect btn waves-light">Editer</a>
+                        <a
+                          (click)="toggleFavorite(pokemon)"
+                          class="waves-effect btn waves-light"
+                          [style.color]="pokemon.is_favorite ? '#ffd700' : '#555'"
+                        >
+                          {{ pokemon.is_favorite ? '★' : '☆' }} Favoris
+                        </a>
+                        <a (click)="deletePokemon(pokemon)" class="waves-effect btn red"
+                          >Supprimer</a
+                        >
+                      }
                     </div>
 
                     <div

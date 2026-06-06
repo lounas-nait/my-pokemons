@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe, NgIf } from '@angular/common';
 import { PokemonsService } from '../pokemons.service';
 import { forkJoin, switchMap } from 'rxjs';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   standalone: true,
@@ -17,11 +18,13 @@ export class DetailPokemonComponent implements OnInit {
   //variable qui va récupérer le pokemon sélectionné
   pokemon: Pokemon | null = null;
   pokemons: Pokemon[] = [];
+  isLoggedIn = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private pokemonsService: PokemonsService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +42,7 @@ export class DetailPokemonComponent implements OnInit {
         this.pokemon = pokemon;
         this.pokemons = pokemons;
       });
+    this.authService.currentUser$.subscribe((user) => (this.isLoggedIn = !!user));
   }
 
   goBack() {

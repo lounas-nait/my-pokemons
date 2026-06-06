@@ -1,6 +1,33 @@
 <nav>
   <div class="nav-wrapper teal">
     <a href="#" class="brand-logo center">Application de pokémons</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      @if (currentUser) {
+        <li style="display: flex; align-items: center; gap: 10px; padding: 0 12px">
+          <div
+            style="
+              width: 36px;
+              height: 36px;
+              border-radius: 50%;
+              background: white;
+              color: teal;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-weight: 500;
+              font-size: 14px;
+            "
+          >
+            {{ getInitials() }}
+          </div>
+          <span style="font-size: 13px; color: white">{{ currentUser.email }}</span>
+        </li>
+        <li><a (click)="logout()" style="cursor: pointer">Se déconnecter</a></li>
+      } @else {
+        <li><a routerLink="/login">Se connecter</a></li>
+        <li><a routerLink="/signup">S'inscrire</a></li>
+      }
+    </ul>
   </div>
 </nav>
 

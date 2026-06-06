@@ -7,6 +7,7 @@ import { BorderCardDirective } from '../directives/border-card.directive';
 import { Router } from '@angular/router';
 import { PokemonsService } from '../pokemons.service';
 import { SearchPokemonComponent } from '../search-pokemons/search-pokemons.component';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   standalone: true,
@@ -22,21 +23,19 @@ import { SearchPokemonComponent } from '../search-pokemons/search-pokemons.compo
 })
 export class PokemonsComponent implements OnInit {
   pokemons: Pokemon[];
+  isLoggedIn = false;
 
   constructor(
     private router: Router,
     private pokemonService: PokemonsService,
+    private authService: AuthService,
   ) {
     this.pokemons = [];
   }
 
   ngOnInit(): void {
-    this.pokemonService.getPokemons().subscribe((pokemons) => {
-      console.log(pokemons);
-      this.pokemons = pokemons;
-      console.log(this.pokemons);
-    });
-    console.log(this.pokemons);
+    this.authService.currentUser$.subscribe((user) => (this.isLoggedIn = !!user));
+    this.pokemonService.getPokemons().subscribe((pokemons) => (this.pokemons = pokemons));
   }
 
   selectPokemon(pokemon: Pokemon) {

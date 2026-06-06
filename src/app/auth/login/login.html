@@ -1,0 +1,27 @@
+<div class="container" style="max-width: 400px; margin: 4rem auto">
+  <div class="card-panel">
+    <h2 class="center">Connexion</h2>
+
+    <div class="input-field">
+      <input type="email" [(ngModel)]="email" placeholder="Email" id="email" />
+      <label for="email">Email</label>
+    </div>
+
+    <div class="input-field">
+      <input type="password" [(ngModel)]="password" placeholder="Mot de passe" id="password" />
+      <label for="password">Mot de passe</label>
+    </div>
+
+    @if (errorMessage) {
+      <p class="card-panel red accent-3" style="color: white">{{ errorMessage }}</p>
+    }
+
+    <div class="center" style="margin-top: 1.5rem">
+      <button (click)="login()" class="waves-effect btn waves-light">Se connecter</button>
+    </div>
+
+    <p class="center" style="margin-top: 1rem; font-size: 14px; color: #888">
+      Pas encore de compte ? <a href="/signup">S'inscrire</a>
+    </p>
+  </div>
+</div>

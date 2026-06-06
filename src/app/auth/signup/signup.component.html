@@ -1,0 +1,51 @@
+<div class="container" style="max-width: 400px; margin: 4rem auto">
+  <div class="card-panel">
+    <h2 class="center">Inscription</h2>
+
+    <div class="input-field">
+      <input type="email" [(ngModel)]="email" placeholder="Email" id="email" />
+      <label for="email">Email</label>
+    </div>
+
+    <div class="input-field">
+      <input type="password" [(ngModel)]="password" placeholder="Mot de passe" id="password" />
+      <label for="password">Mot de passe</label>
+    </div>
+
+    @if (errorMessage) {
+      <p class="card-panel red accent-3" style="color: white">{{ errorMessage }}</p>
+    }
+    @if (successMessage) {
+      <div
+        style="
+          border: 1px solid #a5d6a7;
+          border-radius: 8px;
+          background: #f1f8e9;
+          padding: 16px 20px;
+          margin-top: 1rem;
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+        "
+      >
+        <span style="font-size: 1.4rem">✅</span>
+        <div>
+          <p style="margin: 0; font-weight: 500; color: #2e7d32">Inscription réussie !</p>
+          <p style="margin: 4px 0 0; font-size: 13px; color: #388e3c">
+            Un email de confirmation a été envoyé à <strong>{{ email }}</strong
+            >.<br />
+            Vérifie ta boîte mail et clique sur le lien pour activer ton compte.
+          </p>
+        </div>
+      </div>
+    }
+
+    <div class="center" style="margin-top: 1.5rem">
+      <button (click)="register()" class="waves-effect btn waves-light">S'inscrire</button>
+    </div>
+
+    <p class="center" style="margin-top: 1rem; font-size: 14px; color: #888">
+      Déjà un compte ? <a href="/login">Se connecter</a>
+    </p>
+  </div>
+</div>
