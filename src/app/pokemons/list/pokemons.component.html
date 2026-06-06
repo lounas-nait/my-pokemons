@@ -13,7 +13,11 @@
   <div class="row" [@listAnimation]="pokemons.length">
     @for (pokemon of pokemons; track pokemon.id) {
       <div class="col s6 m4" @cardAnimation>
-        <pkmnBorderCard class="card horizontal" (click)="selectPokemon(pokemon)">
+        <pkmnBorderCard
+          class="card horizontal"
+          (click)="selectPokemon(pokemon)"
+          [pokemonType]="pokemon.types[0]"
+        >
           <div class="card-image">
             <img [src]="pokemon.picture" alt="img" />
           </div>

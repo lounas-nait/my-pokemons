@@ -1,50 +1,57 @@
-import { Directive, ElementRef, HostListener } from "@angular/core";
+import { Directive, ElementRef, HostListener, Input, OnInit } from '@angular/core';
+
+const TYPE_COLORS: { [key: string]: string } = {
+  Feu: '#ff6b35',
+  Eau: '#4fc3f7',
+  Plante: '#66bb6a',
+  Electrik: '#ffd600',
+  Poison: '#ab47bc',
+  Psy: '#ec407a',
+  Normal: '#90a4ae',
+  Vol: '#80deea',
+  Insecte: '#aed581',
+  Fée: '#f48fb1',
+};
 
 @Directive({
   selector: 'pkmnBorderCard',
-  standalone: true
+  standalone: true,
 })
-export class BorderCardDirective{
-  private initialColor: string = '#f5f5f5';
-  private defaultColor: string = '#009686';
-
-  private initialBgColor: string = '#ffffff';
-  private defaultBgColor: string = '#009686';
+export class BorderCardDirective implements OnInit {
+  @Input() pokemonType: string = 'Normal';
 
   private defaultHeight: number = 200;
 
-  constructor( private el: ElementRef){
-    this.setBorder(this.initialColor);
+  constructor(private el: ElementRef) {
     this.setHeight(this.defaultHeight);
-    this.setBackground(this.initialBgColor);
-    this.el.nativeElement.style.transition = 'transform 0.2s ease-in-o'
+    this.el.nativeElement.style.transition =
+      'transform 0.3s ease, border 0.3s ease, box-shadow 0.3s ease, background 0.3s ease';
+    this.el.nativeElement.style.border = 'solid 4px #f5f5f5';
+    this.el.nativeElement.style.background = '#ffffff';
   }
 
-  private setBorder(color:string){
-    let border = 'solid 4px '+ color;
-    this.el.nativeElement.style.border = border;
+  ngOnInit() {}
+
+  private getTypeColor(): string {
+    return TYPE_COLORS[this.pokemonType] || '#009686';
   }
 
-  private setHeight(heigh: number){
-    this.el.nativeElement.style.height = heigh+'px';
+  private setHeight(height: number) {
+    this.el.nativeElement.style.height = height + 'px';
   }
 
-  private setBackground(background: string){
-    this.el.nativeElement.style.background = background;
+  @HostListener('mouseenter') onMouseEnter() {
+    const color = this.getTypeColor();
+    this.el.nativeElement.style.border = `solid 4px ${color}`;
+    this.el.nativeElement.style.background = `${color}22`;
+    this.el.nativeElement.style.transform = 'scale(1.05)';
+    this.el.nativeElement.style.boxShadow = `0 8px 24px ${color}66`;
   }
 
-
-  @HostListener('mouseenter') onMouseEnter(){
-    this.setBorder(this.defaultColor);
-    this.setBackground(this.defaultBgColor);
-    this.el.nativeElement.style.transform = 'scale(1.1)'
+  @HostListener('mouseleave') onMouseLeave() {
+    this.el.nativeElement.style.border = 'solid 4px #f5f5f5';
+    this.el.nativeElement.style.background = '#ffffff';
+    this.el.nativeElement.style.transform = 'scale(1)';
+    this.el.nativeElement.style.boxShadow = 'none';
   }
-
-  @HostListener('mouseleave') onMouseLeave(){
-    this.setBorder(this.initialColor);
-    this.setBackground(this.initialBgColor);
-    this.el.nativeElement.style.transform = 'scale(1)'
-  }
-
-
 }
