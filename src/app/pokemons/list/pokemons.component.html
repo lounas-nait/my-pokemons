@@ -10,12 +10,11 @@
 <search-pokemon></search-pokemon>
 
 <div class="container">
-  <div class="row">
+  <div class="row" [@listAnimation]="pokemons.length">
     @for (pokemon of pokemons; track pokemon.id) {
-      <div class="col s6 m4">
+      <div class="col s6 m4" @cardAnimation>
         <pkmnBorderCard class="card horizontal" (click)="selectPokemon(pokemon)">
           <div class="card-image">
-            <!-- <img src="{{ pokemon.picture }}" alt="img"> -->
             <img [src]="pokemon.picture" alt="img" />
           </div>
           <div class="card-stacked">

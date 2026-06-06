@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { PokemonsService } from '../pokemons.service';
 import { SearchPokemonComponent } from '../search-pokemons/search-pokemons.component';
 import { AuthService } from '../../auth/auth.service';
+import { listAnimation, cardAnimation } from '../../animations';
 
 @Component({
   standalone: true,
@@ -20,6 +21,7 @@ import { AuthService } from '../../auth/auth.service';
     BorderCardDirective,
     SearchPokemonComponent,
   ],
+  animations: [listAnimation, cardAnimation],
 })
 export class PokemonsComponent implements OnInit {
   pokemons: Pokemon[];

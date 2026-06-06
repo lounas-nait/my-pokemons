@@ -3,6 +3,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from './auth/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { pageTransition } from './animations';
 
 @Component({
   standalone: true,
@@ -10,6 +11,7 @@ import { CommonModule } from '@angular/common';
   imports: [RouterLink, RouterOutlet, CommonModule],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
+  animations: [pageTransition],
 })
 export class App implements OnInit {
   currentUser: any = null;
